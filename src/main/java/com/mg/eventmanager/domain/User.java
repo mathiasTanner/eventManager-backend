@@ -8,8 +8,8 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userId", nullable = false, updatable = false)
-    private Long userId;
+    @Column(name = "userid", nullable = false, updatable = false)
+    private Long userid;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -30,11 +30,11 @@ public class User {
     }
 
     public Long getId() {
-        return userId;
+        return userid;
     }
 
     public void setId(Long id) {
-        this.userId = id;
+        this.userid = id;
     }
 
     public String getUsername() {
@@ -74,12 +74,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(userId, user.userId);
+        return Objects.equals(userid, user.userid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(userid);
     }
 
     @Override

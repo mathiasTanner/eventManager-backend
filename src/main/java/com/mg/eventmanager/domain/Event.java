@@ -14,14 +14,14 @@ import java.util.Objects;
 public class Event {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "eventId", nullable = false, updatable = false)
-    private Long eventId;
+    @Column(name = "eventid", nullable = false, updatable = false)
+    private Long eventid;
     private String name;
     private LocalDate eventDate;
     private LocalDate creationDate;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "locId")
+    @JoinColumn(name = "locid")
     private Location location;
     private String materialList;
     private int maxNumberParticipants;
@@ -30,7 +30,7 @@ public class Event {
     private List<Participation> memberList;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userid")
     private Admin creator;
 
     public Event(){}
@@ -47,11 +47,11 @@ public class Event {
     }
 
     public Long getId() {
-        return eventId;
+        return eventid;
     }
 
     public void setId(Long id) {
-        this.eventId = id;
+        this.eventid = id;
     }
 
     public String getName() {
@@ -138,11 +138,11 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Objects.equals(eventId, event.eventId);
+        return Objects.equals(eventid, event.eventid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventId);
+        return Objects.hash(eventid);
     }
 }

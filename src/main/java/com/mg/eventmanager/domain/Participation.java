@@ -10,15 +10,15 @@ import javax.persistence.*;
 public class Participation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "partId", nullable = false, updatable = false)
-    private Long partId;
+    @Column(name = "partid", nullable = false, updatable = false)
+    private Long partid;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userid")
     private User user;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "eventId")
+    @JoinColumn(name = "eventid")
     private Event event;
 
     public Participation(){}
@@ -29,11 +29,11 @@ public class Participation {
     }
 
     public Long getPartId() {
-        return partId;
+        return partid;
     }
 
     public void setPartId(Long partId) {
-        this.partId = partId;
+        this.partid = partId;
     }
 
     public User getUser() {

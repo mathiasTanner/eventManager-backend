@@ -7,8 +7,8 @@ import java.util.List;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "locId", nullable = false, updatable = false)
-    private Long locId;
+    @Column(name = "locid", nullable = false, updatable = false)
+    private Long locid;
     private Double latitude;
     private Double longitude;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "location")
@@ -17,17 +17,17 @@ public class Location {
     public Location(){}
 
     public Location(Long locId, Double latitude, Double longitude) {
-        this.locId = locId;
+        this.locid = locId;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
     public Long getLocId() {
-        return locId;
+        return locid;
     }
 
     public void setLocId(Long locId) {
-        this.locId = locId;
+        this.locid = locId;
     }
 
     public Double getLatitude() {

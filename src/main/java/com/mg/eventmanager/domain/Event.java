@@ -1,8 +1,9 @@
 package com.mg.eventmanager.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.appengine.api.search.GeoPoint;
-
+import com.mg.eventmanager.Business.Exceptions.MaxParticipantReachedException;
+import com.mg.eventmanager.Business.Exceptions.UserAlreadyRegisteredException;
+import com.mg.eventmanager.Business.Exceptions.UserNotFoundException;
 
 
 import javax.persistence.*;
@@ -14,12 +15,13 @@ import java.util.Objects;
 public class Event {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long eventiId;
+    private Long eventId;
     private String name;
     private LocalDate eventDate;
     private LocalDate creationDate;
     private ArrayList<Double> location;
     private ArrayList<String> materialList;
+    private int maxNumberParticipants;
     private int nbrOfCars;
     private ArrayList<User> memberList;
     @ManyToOne
@@ -28,23 +30,24 @@ public class Event {
     private User creator;
 
 
-    public Event(String name, LocalDate eventDate, LocalDate creationDate, ArrayList<Double> location, ArrayList<String> materialList, int nbrOfCars, ArrayList<User> memberList, User creator) {
+    public Event(String name, LocalDate eventDate, LocalDate creationDate, ArrayList<Double> location, ArrayList<String> materialList, int maxNumberParticipants,int nbrOfCars, ArrayList<User> memberList, User creator) {
         this.name = name;
         this.eventDate = eventDate;
         this.creationDate = creationDate;
         this.location = location;
         this.materialList = materialList;
+        this.maxNumberParticipants = maxNumberParticipants;
         this.nbrOfCars = nbrOfCars;
         this.memberList = memberList;
         this.creator = creator;
     }
 
     public Long getId() {
-        return eventiId;
+        return eventId;
     }
 
     public void setId(Long id) {
-        this.eventiId = id;
+        this.eventId = id;
     }
 
     public String getName() {
@@ -87,6 +90,14 @@ public class Event {
         this.materialList = materialList;
     }
 
+    public int getMaxNumberParticipants() {
+        return maxNumberParticipants;
+    }
+
+    public void setMaxNumberParticipants(int maxNumberParticipants) {
+        this.maxNumberParticipants = maxNumberParticipants;
+    }
+
     public int getNbrOfCars() {
         return nbrOfCars;
     }
@@ -101,6 +112,57 @@ public class Event {
 
     public void setMemberList(ArrayList<User> memberList) {
         this.memberList = memberList;
+    }
+
+    public User getUser(Long id){
+        try {
+            if (memberList.isEmpty()){
+                throw new UserNotFoundException();
+            } else {
+                User user = null;
+                for (User u: memberList){
+                    if (u.getId()==id){
+                        user = u;
+                    }
+                }
+                if (user != null){
+                    return user;
+                } else{
+                    throw new UserNotFoundException();
+                }
+            }
+        } catch (UserNotFoundException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public void addMember(User u){
+        try {
+            if (memberList.size()<maxNumberParticipants){
+                if (memberList.contains(u)){
+                    throw new UserAlreadyRegisteredException();
+                } else {
+                    memberList.add(u);
+                }
+            } else {
+                throw new MaxParticipantReachedException();
+            }
+        } catch (UserAlreadyRegisteredException | MaxParticipantReachedException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteMember(User u){
+        try {
+            if (memberList.contains(u)){
+                memberList.remove(u);
+            } else {
+                throw new UserNotFoundException();
+            }
+        } catch (UserNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public User getCreator() {
@@ -123,11 +185,11 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Objects.equals(eventiId, event.eventiId);
+        return Objects.equals(eventId, event.eventId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventiId);
+        return Objects.hash(eventId);
     }
 }

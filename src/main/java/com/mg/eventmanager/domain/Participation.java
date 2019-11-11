@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Participation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "part_id", nullable = false, updatable = false)
     private Long id;
     @ManyToOne
     @JsonIgnore

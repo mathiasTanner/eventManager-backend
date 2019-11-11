@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +53,10 @@ public class EventController {
     @RequestMapping(value="event/{id}/members", method = RequestMethod.GET)
     public List<User> findMembers(@PathVariable("id") Long id){
         Event evt = repo.findById(id).orElse(null);
-        return null;
+        List<User> userLst = new ArrayList();
+        for (User user: evt.getMemberList()){
+            userLst.add(userRepo.findById(user.getId()).orElse(null));
+        }
+        return userLst;
     }
 }

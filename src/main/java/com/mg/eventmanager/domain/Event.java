@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,11 +22,11 @@ public class Event {
     @JsonIgnore
     @JoinColumn(name = "locId")
     private Location location;
-    private ArrayList<String> materialList;
+    private String materialList;
     private int maxNumberParticipants;
     private int nbrOfCars;
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "event")
-    private ArrayList<Participation> memberList;
+    private List<Participation> memberList;
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "userId")
@@ -33,7 +34,7 @@ public class Event {
 
     public Event(){}
 
-    public Event(String name, LocalDate eventDate, LocalDate creationDate, Location location, ArrayList<String> materialList, int maxNumberParticipants,int nbrOfCars, Admin creator) {
+    public Event(String name, LocalDate eventDate, LocalDate creationDate, Location location, String materialList, int maxNumberParticipants,int nbrOfCars, Admin creator) {
         this.name = name;
         this.eventDate = eventDate;
         this.creationDate = creationDate;
@@ -84,11 +85,11 @@ public class Event {
         this.location = location;
     }
 
-    public ArrayList<String> getMaterialList() {
+    public String getMaterialList() {
         return materialList;
     }
 
-    public void setMaterialList(ArrayList<String> materialList) {
+    public void setMaterialList(String materialList) {
         this.materialList = materialList;
     }
 
@@ -108,11 +109,11 @@ public class Event {
         this.nbrOfCars = nbrOfCars;
     }
 
-    public ArrayList<Participation> getMemberList() {
+    public List<Participation> getMemberList() {
         return memberList;
     }
 
-    public void setMemberList(ArrayList<Participation> memberList) {
+    public void setMemberList(List<Participation> memberList) {
         this.memberList = memberList;
     }
 

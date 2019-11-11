@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name="evt_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +18,7 @@ public class User {
     private boolean hasCar;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Participation> participations;
-    @Column(name = "password", nullable = false)
+    @Column(name = "passwordHash", nullable = false)
     private String passwordHash;
 
     public User(){}

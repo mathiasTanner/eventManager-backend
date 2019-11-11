@@ -1,6 +1,5 @@
 package com.mg.eventmanager.web;
 
-import com.mg.eventmanager.Business.Role;
 import com.mg.eventmanager.domain.User;
 import com.mg.eventmanager.domain.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +29,14 @@ public class UserController {
 
     @RequestMapping(value="/user/admin", method = RequestMethod.GET)
     public @ResponseBody List<User> findAllAdmin() {
-        return (List<User>)repo.findByRole(Role.ADMIN);
+        //TODO implement method after creating repo
+        return (null);
     }
 
     @RequestMapping(value="/user/member", method = RequestMethod.GET)
+        //TODO implement method after creating repo
     public @ResponseBody List<User> findAllMember() {
-        return (List<User>)repo.findByRole(Role.MEMBER);
+        return null;
     }
 
     @RequestMapping(value = "/user/save", method = RequestMethod.POST)

@@ -1,8 +1,7 @@
 package com.mg.eventmanager.domain;
 
-import com.mg.eventmanager.Business.Role;
-
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,15 +15,17 @@ public class User {
     private String username;
     private String mail;
     private boolean hasCar;
-    private Role role;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "creator")
+    private List<Participation> participations;
     @Column(name = "password", nullable = false)
     private String passwordHash;
 
-    public User(String username, String mail, boolean hasCar, Role role, String passwordHash) {
+    public User(){}
+
+    public User(String username, String mail, boolean hasCar, String passwordHash) {
         this.username = username;
         this.mail = mail;
         this.hasCar = hasCar;
-        this.role = role;
         this.passwordHash = passwordHash;
     }
 
@@ -58,14 +59,6 @@ public class User {
 
     public void setHasCar(boolean hasCar) {
         this.hasCar = hasCar;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public String getPasswordHash() {

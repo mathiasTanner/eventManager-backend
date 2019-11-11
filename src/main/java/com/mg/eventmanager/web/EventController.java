@@ -45,7 +45,7 @@ public class EventController {
 
     /*************** get users in relation of an event *********/
 
-    @RequestMapping(value="event/{id}/admin", method = RequestMethod.GET)
+    /*@RequestMapping(value="event/{id}/admin", method = RequestMethod.GET)
     public Optional<User> findCreator(@PathVariable("id") Long id){
         return userRepo.findById(repo.findById(id).get().getCreator().getId());
     }
@@ -59,4 +59,6 @@ public class EventController {
         }
         return userLst;
     }
+
+     */
 }

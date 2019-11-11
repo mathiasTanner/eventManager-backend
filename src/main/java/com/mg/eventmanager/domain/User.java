@@ -15,7 +15,7 @@ public class User {
     private String username;
     private String mail;
     private boolean hasCar;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "creator")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Participation> participations;
     @Column(name = "password", nullable = false)
     private String passwordHash;

@@ -7,7 +7,7 @@ import java.util.List;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "loc_id", nullable = false, updatable = false)
+    @Column(name = "locId", nullable = false, updatable = false)
     private Long locId;
     private Double latitude;
     private Double longitude;

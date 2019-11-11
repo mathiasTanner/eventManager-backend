@@ -15,4 +15,12 @@ public class Admin extends User {
     public Admin(String username, String mail, boolean hasCar,  String passwordHash) {
         super(username, mail, hasCar, passwordHash);
     }
+
+    public List<Event> getLstEvt() {
+        return lstEvt;
+    }
+
+    public void setLstEvt(List<Event> lstEvt) {
+        this.lstEvt = lstEvt;
+    }
 }

@@ -6,6 +6,7 @@ import com.mg.eventmanager.domain.User;
 
 import javax.persistence.*;
 
+@Entity
 public class Participation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

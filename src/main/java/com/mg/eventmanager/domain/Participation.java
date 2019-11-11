@@ -14,10 +14,10 @@ public class Participation {
     private Long id;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "id")
     private User user;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "eventId")
     private Event event;
 }

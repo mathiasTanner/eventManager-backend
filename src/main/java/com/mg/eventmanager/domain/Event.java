@@ -14,6 +14,7 @@ import java.util.Objects;
 public class Event {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "evt_id", nullable = false, updatable = false)
     private Long eventId;
     private String name;
     private LocalDate eventDate;

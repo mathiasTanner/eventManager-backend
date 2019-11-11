@@ -14,7 +14,7 @@ public class Participation {
     private Long id;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "userId")
     private User user;
     @ManyToOne
     @JsonIgnore

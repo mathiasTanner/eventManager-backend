@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     private UserRepository repo;
 
-    @RequestMapping(value="/user", method = RequestMethod.GET)
+    @RequestMapping(value="/users", method = RequestMethod.GET)
     public @ResponseBody List<User> findAllUsers() {
         return (List<User>)repo.findAll();
     }

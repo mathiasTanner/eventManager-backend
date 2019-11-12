@@ -50,6 +50,8 @@ public class EventManagerTools {
 
         /**Creating Locations**/
 
+        System.out.println("GOOOOOOTTTT THEEEEEEERRRREEEEEEEE");
+
         Location loc1 = new Location("Pasila",60.202589, 24.934024);
 
         Location loc2 = new Location("Ivalo",68.657964, 27.539790);
@@ -58,7 +60,7 @@ public class EventManagerTools {
         locRepo.save(loc2);
 
 
-        System.out.println("GOOOOOOTTTT THEEEEEEERRRREEEEEEEE");
+        System.out.println("GOOOOOOTTTT HEEEEEEERRRREEEEEEEE");
         System.out.println(loc1.getLocId());
 
 

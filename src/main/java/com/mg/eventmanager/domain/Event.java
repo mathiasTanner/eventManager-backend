@@ -21,7 +21,7 @@ public class Event {
     private LocalDate creationDate;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "locid")
+    @JoinColumn(name = "locid", nullable = false,foreignKey=@ForeignKey(name = "fk_locid"))
     private Location location;
     private String materialList;
     private int maxNumberParticipants;

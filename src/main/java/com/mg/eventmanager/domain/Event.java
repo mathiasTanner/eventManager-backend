@@ -13,7 +13,7 @@ import java.util.Objects;
 @Entity
 public class Event {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "eventid", nullable = false, updatable = false)
     private Long eventid;
     private String name;

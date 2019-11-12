@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 public class Participation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "partid", nullable = false, updatable = false)
     private Long partid;
     @ManyToOne

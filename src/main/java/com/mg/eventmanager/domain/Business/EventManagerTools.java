@@ -62,7 +62,7 @@ public class EventManagerTools {
         System.out.println(loc1.getLocId());
 
 
-        /**Creating Events**
+        /**Creating Events**/
         //String name, LocalDate eventDate, LocalDate creationDate, Location location, String materialList, int maxNumberParticipants,int nbrOfCars, Admin creator
         Event evt1 = new Event("Event1", LocalDate.of(2020,10,10), LocalDate.now(), loc1, "matos", 5, 2, admin);
         Event evt2 = new Event("Event2", LocalDate.of(2020,9,17), LocalDate.now(), loc2, "matos2", 6, 3, admin2);
@@ -70,7 +70,7 @@ public class EventManagerTools {
         eventRepo.save(evt1);
         eventRepo.save(evt2);
 
-        /**Creating participations**
+        /**Creating participations**/
         List<Participation> participants = new ArrayList<>();
         participants.add(new Participation(user, evt1));
         participants.add(new Participation(user2, evt1));
@@ -107,7 +107,7 @@ public class EventManagerTools {
             participations.add(p);
             u.setParticipations(participations);
             userRepo.save(u);
-        }*/
+        }
 
 
     }

@@ -2,6 +2,7 @@ package com.mg.eventmanager;
 
 import com.mg.eventmanager.domain.Business.EventManagerTools;
 import com.mg.eventmanager.domain.repositories.EventRepository;
+import com.mg.eventmanager.domain.repositories.LocationRepository;
 import com.mg.eventmanager.domain.repositories.ParticipationRepository;
 import com.mg.eventmanager.domain.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -24,9 +25,9 @@ public class EventmanagerApplication extends SpringBootServletInitializer {
     }
 
     @Bean
-    public CommandLineRunner managerInit(EventRepository eventRepo, ParticipationRepository partRepo, UserRepository userRepo) {
+    public CommandLineRunner managerInit(EventRepository eventRepo, ParticipationRepository partRepo, UserRepository userRepo, LocationRepository locRepo) {
         return (args) -> {
-            EventManagerTools.initializeEnvironmment(eventRepo, partRepo, userRepo);
+            EventManagerTools.initializeEnvironmment(eventRepo, partRepo, userRepo, locRepo);
 
         };
     }

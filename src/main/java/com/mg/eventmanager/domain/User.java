@@ -70,6 +70,14 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
+    public List<Participation> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(List<Participation> participations) {
+        this.participations = participations;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

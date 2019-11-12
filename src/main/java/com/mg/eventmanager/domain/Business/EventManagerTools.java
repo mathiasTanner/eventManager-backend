@@ -50,8 +50,6 @@ public class EventManagerTools {
 
         /**Creating Locations**/
 
-        /*System.out.println("GOOOOOOTTTT THEEEEEEERRRREEEEEEEE");
-
         Location loc1 = new Location("Pasila",60.202589, 24.934024);
 
         Location loc2 = new Location("Ivalo",68.657964, 27.539790);

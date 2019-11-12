@@ -26,6 +26,7 @@ public class EventManagerTools {
         Admin admin = new Admin( "admin", "mail",  true, "password");
         Admin admin2 = new Admin( "admin3", "mail3",  false, "password");
         userRepo.save(admin);
+        userRepo.save(admin2);
 
         /**Creating Users**/
         User user = new User("user", "userMail", false, "12345678");

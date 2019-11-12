@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Location {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "locid", nullable = false, updatable = false)
     private Long locid;
     private String name;

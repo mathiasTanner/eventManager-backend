@@ -26,6 +26,7 @@ public class EventmanagerApplication extends SpringBootServletInitializer {
         SpringApplication.run(EventmanagerApplication.class, args);
     }
 
+
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override

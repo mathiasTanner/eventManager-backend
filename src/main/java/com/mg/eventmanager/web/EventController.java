@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "/**", allowedHeaders = "*")
+//@CrossOrigin(origins = "/**", allowedHeaders = "*")
 @Controller
 public class EventController {
     @Autowired
@@ -30,22 +30,23 @@ public class EventController {
     @Autowired
     private ParticipationRepository partRepo;
 
-    @RequestMapping(value="/event", method = RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value="/events", method = RequestMethod.GET)
     public @ResponseBody List<Event> findAllEvents() {
         return (List<Event>)repo.findAll();
     }
 
-    @RequestMapping(value="/event/{id}", method = RequestMethod.GET)
+    @RequestMapping(value="/events/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Event> findEvent(@PathVariable("id") Long id) {
         return repo.findById(id);
     }
 
-    @RequestMapping(value = "/event/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/events/save", method = RequestMethod.POST)
     public void saveEvent(Event event){
         repo.save(event);
     }
 
-    @RequestMapping(value="event/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value="events/delete/{id}", method = RequestMethod.GET)
     public void deleteEvent(@PathVariable("id") Long id){
         repo.deleteById(id);
     }

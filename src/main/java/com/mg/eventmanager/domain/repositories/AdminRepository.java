@@ -8,4 +8,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "http://localhost:3000")
 @RepositoryRestResource(path="admins")
 public interface AdminRepository extends CrudRepository<Admin, Long> {
+    Admin findByUsername(String username);
 }

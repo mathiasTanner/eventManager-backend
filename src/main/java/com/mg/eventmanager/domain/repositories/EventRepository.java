@@ -5,11 +5,13 @@ import com.mg.eventmanager.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RepositoryRestResource(path="events")
 public interface EventRepository extends CrudRepository<Event, Long> {
-    List<Event> findByName(String name);
+    Event findByName(String name);
 }

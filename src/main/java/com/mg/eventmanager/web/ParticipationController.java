@@ -22,7 +22,7 @@ public class ParticipationController {
         List<Participation> lst = new ArrayList<>();
         for (Participation p: lstPart){
             if (p.getEvent().getId().equals(id)){
-                lst.add( partRepo.findById(p.getPartId()).get());
+                lst.add(p);
             }
         }
         return lst;

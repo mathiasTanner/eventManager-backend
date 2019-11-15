@@ -18,27 +18,15 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000")
 @Controller
 public class EventController {
+
     @Autowired
-    private EventRepository repo;
+    EventRepository eventRepo;
 
-    @RequestMapping(value="/events", method = RequestMethod.GET)
-    public @ResponseBody List<Event> findAllEvents() {
-        return (List<Event>)repo.findAll();
+    @RequestMapping(value="/event/{name}", method = RequestMethod.GET)
+    public @ResponseBody
+    Event findEventByName(@PathVariable("name") String name) {
+        return eventRepo.findByName(name);
     }
 
-    @RequestMapping(value="/events/{id}", method = RequestMethod.GET)
-    public @ResponseBody Optional<Event> findEvent(@PathVariable("id") Long id) {
-        return repo.findById(id);
-    }
-
-    @RequestMapping(value = "/events/save", method = RequestMethod.POST)
-    public void saveEvent(Event event){
-        repo.save(event);
-    }
-
-    @RequestMapping(value="events/delete/{id}", method = RequestMethod.GET)
-    public void deleteEvent(@PathVariable("id") Long id){
-        repo.deleteById(id);
-    }
 
 }

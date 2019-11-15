@@ -9,4 +9,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "http://localhost:3000")
 @RepositoryRestResource(path="locations")
 public interface LocationRepository extends CrudRepository<Location, Long> {
+    Location findByName(String name);
 }

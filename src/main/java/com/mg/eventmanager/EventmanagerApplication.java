@@ -27,14 +27,14 @@ public class EventmanagerApplication extends SpringBootServletInitializer {
     }
 
 
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/events").allowedOrigins("http://localhost:3000/");
-            }
-        };
-    }
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/events").allowedOrigins("http://localhost:3000/");
+//            }
+//        };
+//    }
 
     @Bean
     public CommandLineRunner managerInit(EventRepository eventRepo, ParticipationRepository partRepo, UserRepository userRepo, LocationRepository locRepo) {

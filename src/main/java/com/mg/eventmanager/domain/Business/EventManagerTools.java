@@ -58,11 +58,6 @@ public class EventManagerTools {
         locRepo.save(loc1);
         locRepo.save(loc2);
 
-
-        System.out.println("GOOOOOOTTTT HEEEEEEERRRREEEEEEEE");
-        System.out.println(loc1.getLocId());
-
-
         /**Creating Events**/
         //String name, LocalDate eventDate, LocalDate creationDate, Location location, String materialList, int maxNumberParticipants,int nbrOfCars, Admin creator
         Event evt1 = new Event("Event1", LocalDate.of(2020,10,10), LocalDate.now(), loc1, "matos", 5, 2, admin);

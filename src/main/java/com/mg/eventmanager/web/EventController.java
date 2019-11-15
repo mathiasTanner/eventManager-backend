@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@CrossOrigin(origins = "/**", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
 public class EventController {
     @Autowired
@@ -30,7 +31,7 @@ public class EventController {
     @Autowired
     private ParticipationRepository partRepo;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @RequestMapping(value="/events", method = RequestMethod.GET)
     public @ResponseBody List<Event> findAllEvents() {
         return (List<Event>)repo.findAll();

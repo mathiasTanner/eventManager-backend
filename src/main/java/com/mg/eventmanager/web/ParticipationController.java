@@ -15,7 +15,7 @@ public class ParticipationController {
     @Autowired
     ParticipationRepository partRepo;
 
-    @RequestMapping(value="/participations/{eventId}", method = RequestMethod.GET)
+    @RequestMapping(value="/participations/event/{eventId}", method = RequestMethod.GET)
     public @ResponseBody
     List<Participation> findByEvent(@PathVariable("eventId") Long id) {
         List<Participation> lstPart = (List<Participation>) partRepo.findAll();
@@ -28,7 +28,7 @@ public class ParticipationController {
         return lst;
     }
 
-    @RequestMapping(value="/participations/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value="/participations/user/{userId}", method = RequestMethod.GET)
     public @ResponseBody
     List<Participation> findByUser(@PathVariable("userId") Long id) {
         List<Participation> lstPart = (List<Participation>) partRepo.findAll();

@@ -15,7 +15,7 @@ public class LocationController {
     @Autowired
     LocationRepository locRepo;
 
-    @RequestMapping(value="/locations/{name}", method = RequestMethod.GET)
+    @RequestMapping(value="/{name}", method = RequestMethod.GET)
     public @ResponseBody
     Location findEvent(@PathVariable("name") String name) {
         return locRepo.findByName(name);

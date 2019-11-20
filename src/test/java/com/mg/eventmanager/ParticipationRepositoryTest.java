@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class ParticipationRepositoryTest {
     private Location location;
     private Admin admin;
-    private User user;
+    private Member member;
     private Event event;
     private Participation participation;
 
@@ -37,7 +37,7 @@ public class ParticipationRepositoryTest {
     AdminRepository adminRepository;
 
     @Autowired
-    UserRepository userRepository;
+    MemberRepository memberRepository;
 
     @Autowired
     ParticipationRepository participationRepository;
@@ -51,13 +51,13 @@ public class ParticipationRepositoryTest {
         admin = new Admin( "adm", "mail5",  true, "password");
         adminRepository.save(admin);
 
-        user = new User("usr", "userMail", false, "12345678");
-        userRepository.save(user);
+        member = new Member("usr", "userMail", false, "12345678");
+        memberRepository.save(member);
 
         event = new Event("evt", LocalDate.of(2020,10,10), LocalDate.now(), location, "matos", 5, 2, admin);
         eventRepository.save(event);
 
-        participation = new Participation(user, event);
+        participation = new Participation(member, event);
         participationRepository.save(participation);
 
         List<Participation> lst = (List<Participation>) participationRepository.findAll();
@@ -69,7 +69,7 @@ public class ParticipationRepositoryTest {
     public void findParticipationTest(){
         List<Participation> lst = participationRepository.findByEvent(event.getId());
         assertEquals(1, lst.size());
-        lst = participationRepository.findByUser(user.getId());
+        lst = participationRepository.findByMember(member.getId());
         assertEquals(1, lst.size());
     }
 
@@ -85,6 +85,6 @@ public class ParticipationRepositoryTest {
         locationRepository.deleteAll();
         adminRepository.deleteAll();
         participationRepository.deleteAll();
-        userRepository.deleteAll();
+        memberRepository.deleteAll();
     }
 }

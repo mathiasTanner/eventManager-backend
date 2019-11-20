@@ -28,13 +28,13 @@ public class ParticipationController {
         return lst;
     }
 
-    @RequestMapping(value="/participations/user/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value="/participations/member/{memberid}", method = RequestMethod.GET)
     public @ResponseBody
-    List<Participation> findByUser(@PathVariable("userId") Long id) {
+    List<Participation> findByMember(@PathVariable("memberid") Long id) {
         List<Participation> lstPart = (List<Participation>) partRepo.findAll();
         List<Participation> lst = new ArrayList<>();
         for (Participation p: lstPart){
-            if (p.getUser().getId().equals(id)){
+            if (p.getMember().getId().equals(id)){
                 lst.add(p);
             }
         }

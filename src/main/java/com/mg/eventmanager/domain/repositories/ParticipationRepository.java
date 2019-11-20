@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@RepositoryRestResource(path="participation")
+@RepositoryRestResource(path="participations")
 public interface ParticipationRepository extends CrudRepository<Participation, Long> {
     List<Participation> findByEvent(Long evtId);
-    List<Participation> findByUser(Long userId);
+    List<Participation> findByMember(Long userId);
 }

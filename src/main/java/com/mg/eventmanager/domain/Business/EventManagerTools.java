@@ -1,11 +1,10 @@
 package com.mg.eventmanager.domain.Business;
 
-import com.google.appengine.repackaged.org.joda.time.format.DateTimeFormat;
 import com.mg.eventmanager.domain.*;
 import com.mg.eventmanager.domain.repositories.EventRepository;
 import com.mg.eventmanager.domain.repositories.LocationRepository;
 import com.mg.eventmanager.domain.repositories.ParticipationRepository;
-import com.mg.eventmanager.domain.repositories.UserRepository;
+import com.mg.eventmanager.domain.repositories.MemberRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,39 +13,39 @@ import java.util.List;
 public class EventManagerTools {
 
 
-    public static void initializeEnvironmment(EventRepository eventRepo, ParticipationRepository partRepo, UserRepository userRepo, LocationRepository locRepo){
+    public static void initializeEnvironmment(EventRepository eventRepo, ParticipationRepository partRepo, MemberRepository memberRepo, LocationRepository locRepo){
 
         //TODO delete the next lines for final deployment
         eventRepo.deleteAll();
         partRepo.deleteAll();
-        userRepo.deleteAll();
+        memberRepo.deleteAll();
         locRepo.deleteAll();
 
         /**Creating Admin**/
         Admin admin = new Admin( "admin", "mail",  true, "password");
         Admin admin2 = new Admin( "admin3", "mail3",  false, "password");
-        userRepo.save(admin);
-        userRepo.save(admin2);
+        memberRepo.save(admin);
+        memberRepo.save(admin2);
 
-        /**Creating Users**/
-        User user = new User("user", "userMail", false, "12345678");
-        User user2 = new User("user2", "usermail2", false, "pass");
-        User user3 = new User("user3", "usermail3", true, "pass");
-        User user4 = new User("user4", "usermail4", true, "pass");
-        User user5 = new User("user5", "usermail5", true, "pass");
-        User user6 = new User("user6", "usermail6", false, "pass");
-        User user7 = new User("user7", "usermail7", false, "pass");
-        User user8 = new User("user8", "usermail8", true, "pass");
-        User user9 = new User("user9", "usermail9", false, "pass");
-        userRepo.save(user);
-        userRepo.save(user2);
-        userRepo.save(user3);
-        userRepo.save(user4);
-        userRepo.save(user5);
-        userRepo.save(user6);
-        userRepo.save(user7);
-        userRepo.save(user8);
-        userRepo.save(user9);
+        /**Creating Mmebers**/
+        Member member = new Member("member", "userMail", false, "12345678");
+        Member member2 = new Member("member2", "usermail2", false, "pass");
+        Member member3 = new Member("member3", "usermail3", true, "pass");
+        Member member4 = new Member("member4", "usermail4", true, "pass");
+        Member member5 = new Member("member5", "usermail5", true, "pass");
+        Member member6 = new Member("member6", "usermail6", false, "pass");
+        Member member7 = new Member("member7", "usermail7", false, "pass");
+        Member member8 = new Member("member8", "usermail8", true, "pass");
+        Member member9 = new Member("member9", "usermail9", false, "pass");
+        memberRepo.save(member);
+        memberRepo.save(member2);
+        memberRepo.save(member3);
+        memberRepo.save(member4);
+        memberRepo.save(member5);
+        memberRepo.save(member6);
+        memberRepo.save(member7);
+        memberRepo.save(member8);
+        memberRepo.save(member9);
 
 
         /**Creating Locations**/
@@ -68,41 +67,41 @@ public class EventManagerTools {
 
         /**Creating participations**/
         List<Participation> participants = new ArrayList<>();
-        participants.add(new Participation(user, evt1));
-        participants.add(new Participation(user2, evt1));
-        participants.add(new Participation(user3, evt1));
-        participants.add(new Participation(user4, evt1));
-        participants.add(new Participation(user5, evt1));
+        participants.add(new Participation(member, evt1));
+        participants.add(new Participation(member2, evt1));
+        participants.add(new Participation(member3, evt1));
+        participants.add(new Participation(member4, evt1));
+        participants.add(new Participation(member5, evt1));
 
 
         evt1.setMemberList(participants);
         eventRepo.save(evt1);
 
         for (Participation p : evt1.getMemberList()){
-            User u = p.getUser();
+            Member u = p.getMember();
             List<Participation> participations = new ArrayList<>();
             participations.add(p);
             u.setParticipations(participations);
-            userRepo.save(u);
+            memberRepo.save(u);
         }
 
         participants.clear();
 
-        participants.add(new Participation(user6, evt2));
-        participants.add(new Participation(user7, evt2));
-        participants.add(new Participation(user8, evt2));
-        participants.add(new Participation(user9, evt2));
+        participants.add(new Participation(member6, evt2));
+        participants.add(new Participation(member7, evt2));
+        participants.add(new Participation(member8, evt2));
+        participants.add(new Participation(member9, evt2));
         participants.add(new Participation(admin, evt2));
 
         evt2.setMemberList(participants);
         eventRepo.save(evt2);
 
         for (Participation p : evt2.getMemberList()){
-            User u = p.getUser();
+            Member u = p.getMember();
             List<Participation> participations = new ArrayList<>();
             participations.add(p);
             u.setParticipations(participations);
-            userRepo.save(u);
+            memberRepo.save(u);
         }
 
 

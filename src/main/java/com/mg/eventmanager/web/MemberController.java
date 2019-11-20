@@ -1,27 +1,27 @@
 package com.mg.eventmanager.web;
 
-import com.mg.eventmanager.domain.User;
-import com.mg.eventmanager.domain.repositories.UserRepository;
+import com.mg.eventmanager.domain.Member;
+import com.mg.eventmanager.domain.repositories.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @Controller
-public class UserController {
+public class MemberController {
 
     @Autowired
-    UserRepository userRepo;
+    MemberRepository userRepo;
 
     @RequestMapping(value="/user/mail/{mail}", method = RequestMethod.GET)
     public @ResponseBody
-    User findAdminByMail(@PathVariable("mail") String mail) {
+    Member findAdminByMail(@PathVariable("mail") String mail) {
         return userRepo.findByMail(mail);
     }
 
     @RequestMapping(value="/user/username/{username}", method = RequestMethod.GET)
     public @ResponseBody
-    User findAdminByUsername(@PathVariable("username") String username) {
+    Member findAdminByUsername(@PathVariable("username") String username) {
         return userRepo.findByUsername(username);
     }
 

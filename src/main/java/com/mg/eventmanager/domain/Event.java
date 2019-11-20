@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +29,7 @@ public class Event {
     private List<Participation> memberList;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "userid")
+    @JoinColumn(name = "memberid")
     private Admin creator;
 
     public Event(){}
@@ -118,7 +117,7 @@ public class Event {
         this.memberList = memberList;
     }
 
-    public User getCreator() {
+    public Member getCreator() {
         return creator;
     }
 

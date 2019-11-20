@@ -23,7 +23,7 @@ class EventmanagerApplicationTests {
     ParticipationController participationController;
 
     @Autowired
-    UserController userController;
+    MemberController memberController;
 
     @Test
     void contextLoads() {
@@ -31,7 +31,7 @@ class EventmanagerApplicationTests {
         assertThat(eventController).isNotNull();
         assertThat(locationController).isNotNull();
         assertThat(participationController).isNotNull();
-        assertThat(userController).isNotNull();
+        assertThat(memberController).isNotNull();
     }
 
 }

@@ -38,13 +38,13 @@ public class LocationRepositoryTest {
     }
 
     @Test
-    public void findUserTest(){
+    public void findLocationTest(){
         Location test = locationRepository.findByName("test");
         assertEquals(location, test);
     }
 
     @Test
-    public void deleteEventTest(){
+    public void deleteLocationTest(){
         locationRepository.deleteById(location.getLocId());
         assertThat(locationRepository.findById(location.getLocId())).isEmpty();
     }

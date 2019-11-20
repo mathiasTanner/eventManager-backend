@@ -5,25 +5,26 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="evt_user")
-public class User {
+@Table(name="evt_member")
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userid", nullable = false, updatable = false)
-    private Long userid;
+    @Column(name = "memberid", nullable = false, updatable = false)
+    private Long memberid;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
     private String mail;
     private boolean hasCar;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "member")
     private List<Participation> participations;
     @Column(name = "passwordHash", nullable = false)
     private String passwordHash;
+    private String token;
 
-    public User(){}
+    public Member(){}
 
-    public User(String username, String mail, boolean hasCar, String passwordHash) {
+    public Member(String username, String mail, boolean hasCar, String passwordHash) {
         this.username = username;
         this.mail = mail;
         this.hasCar = hasCar;
@@ -31,11 +32,11 @@ public class User {
     }
 
     public Long getId() {
-        return userid;
+        return memberid;
     }
 
     public void setId(Long id) {
-        this.userid = id;
+        this.memberid = id;
     }
 
     public String getUsername() {
@@ -78,22 +79,31 @@ public class User {
         this.participations = participations;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(userid, user.userid);
+        Member member = (Member) o;
+        return Objects.equals(memberid, member.memberid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userid);
+        return Objects.hash(memberid);
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Member{" +
                 "username='" + username + '\'' +
                 ", mail='" + mail + '\'' +
                 '}';

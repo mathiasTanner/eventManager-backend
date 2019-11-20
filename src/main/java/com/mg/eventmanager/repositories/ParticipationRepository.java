@@ -1,4 +1,4 @@
-package com.mg.eventmanager.domain.repositories;
+package com.mg.eventmanager.repositories;
 
 
 import com.mg.eventmanager.domain.Participation;

@@ -1,7 +1,7 @@
 package com.mg.eventmanager;
 
 import com.mg.eventmanager.domain.Location;
-import com.mg.eventmanager.domain.repositories.LocationRepository;
+import com.mg.eventmanager.repositories.LocationRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

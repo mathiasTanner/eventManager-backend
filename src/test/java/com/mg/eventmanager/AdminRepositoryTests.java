@@ -2,7 +2,7 @@ package com.mg.eventmanager;
 
 
 import com.mg.eventmanager.domain.Admin;
-import com.mg.eventmanager.domain.repositories.AdminRepository;
+import com.mg.eventmanager.repositories.AdminRepository;
 import org.junit.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.runner.RunWith;

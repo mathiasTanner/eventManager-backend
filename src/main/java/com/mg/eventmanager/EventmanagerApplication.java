@@ -1,10 +1,10 @@
 package com.mg.eventmanager;
 
-import com.mg.eventmanager.domain.Business.EventManagerTools;
-import com.mg.eventmanager.domain.repositories.EventRepository;
-import com.mg.eventmanager.domain.repositories.LocationRepository;
-import com.mg.eventmanager.domain.repositories.ParticipationRepository;
-import com.mg.eventmanager.domain.repositories.MemberRepository;
+import com.mg.eventmanager.business.EventManagerTools;
+import com.mg.eventmanager.repositories.EventRepository;
+import com.mg.eventmanager.repositories.LocationRepository;
+import com.mg.eventmanager.repositories.ParticipationRepository;
+import com.mg.eventmanager.repositories.MemberRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,7 +1,7 @@
 package com.mg.eventmanager;
 
 import com.mg.eventmanager.domain.*;
-import com.mg.eventmanager.domain.repositories.*;
+import com.mg.eventmanager.repositories.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

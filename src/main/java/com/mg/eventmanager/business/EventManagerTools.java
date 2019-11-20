@@ -1,10 +1,10 @@
-package com.mg.eventmanager.domain.Business;
+package com.mg.eventmanager.business;
 
 import com.mg.eventmanager.domain.*;
-import com.mg.eventmanager.domain.repositories.EventRepository;
-import com.mg.eventmanager.domain.repositories.LocationRepository;
-import com.mg.eventmanager.domain.repositories.ParticipationRepository;
-import com.mg.eventmanager.domain.repositories.MemberRepository;
+import com.mg.eventmanager.repositories.EventRepository;
+import com.mg.eventmanager.repositories.LocationRepository;
+import com.mg.eventmanager.repositories.ParticipationRepository;
+import com.mg.eventmanager.repositories.MemberRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

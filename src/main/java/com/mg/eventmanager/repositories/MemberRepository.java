@@ -17,6 +17,6 @@ public interface MemberRepository extends CrudRepository<Member, Long> {
     Member findByMail(String mail);
 
     @Query(value = "SELECT u FROM evt_member u where u.userName = ?1 and u.password = ?2 ")
-    Optional login(String username, String password);
-    Optional findByToken(String token);
+    Optional<Member> login(String username, String password);
+    Optional<Member> findByToken(String token);
 }

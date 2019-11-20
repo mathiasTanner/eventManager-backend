@@ -32,7 +32,7 @@ public class DefaultMemberService implements MemberService {
     }
 
     @Override
-    public Optional findByToken(String token) {
+    public Optional<User> findByToken(String token) {
         Optional member= memberRepository.findByToken(token);
         if(member.isPresent()){
             Member member1 = (Member)member.get();

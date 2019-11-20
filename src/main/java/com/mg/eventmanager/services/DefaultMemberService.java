@@ -19,10 +19,10 @@ public class DefaultMemberService implements MemberService {
 
     @Override
     public String login(String username, String password) {
-        Optional member = memberRepository.login(username,password);
+        Optional<Member> member = memberRepository.login(username,password);
         if(member.isPresent()){
             String token = UUID.randomUUID().toString();
-            Member memb= (Member)member.get();
+            Member memb= member.get();
             memb.setToken(token);
             memberRepository.save(memb);
             return token;
@@ -33,9 +33,9 @@ public class DefaultMemberService implements MemberService {
 
     @Override
     public Optional<User> findByToken(String token) {
-        Optional member= memberRepository.findByToken(token);
+        Optional<Member> member= memberRepository.findByToken(token);
         if(member.isPresent()){
-            Member member1 = (Member)member.get();
+            Member member1 = member.get();
             User user= new User(member1.getUsername(), member1.getPasswordHash(), true, true, true, true,
                     AuthorityUtils.createAuthorityList("USER"));
             return Optional.of(user);

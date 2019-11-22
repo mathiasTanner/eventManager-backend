@@ -1,36 +1,41 @@
 package com.mg.eventmanager.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mg.eventmanager.Business.Exceptions.MaxParticipantReachedException;
-import com.mg.eventmanager.Business.Exceptions.UserAlreadyRegisteredException;
-import com.mg.eventmanager.Business.Exceptions.UserNotFoundException;
+
 
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class Event {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long eventId;
+    @Column(name = "eventid", nullable = false, updatable = false)
+    private Long eventid;
     private String name;
     private LocalDate eventDate;
     private LocalDate creationDate;
-    private ArrayList<Double> location;
-    private ArrayList<String> materialList;
-    private int maxNumberParticipants;
-    private int nbrOfCars;
-    private ArrayList<User> memberList;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "userId")
-    private User creator;
+    @JoinColumn(name = "locid")
+    private Location location;
+    private String materialList;
+    private int maxNumberParticipants;
+    private int nbrOfCars;
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "event")
+    private List<Participation> memberList;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "userid")
+    private Admin creator;
 
+    public Event(){}
 
-    public Event(String name, LocalDate eventDate, LocalDate creationDate, ArrayList<Double> location, ArrayList<String> materialList, int maxNumberParticipants,int nbrOfCars, ArrayList<User> memberList, User creator) {
+    public Event(String name, LocalDate eventDate, LocalDate creationDate, Location location, String materialList, int maxNumberParticipants,int nbrOfCars, Admin creator) {
         this.name = name;
         this.eventDate = eventDate;
         this.creationDate = creationDate;
@@ -38,16 +43,15 @@ public class Event {
         this.materialList = materialList;
         this.maxNumberParticipants = maxNumberParticipants;
         this.nbrOfCars = nbrOfCars;
-        this.memberList = memberList;
         this.creator = creator;
     }
 
     public Long getId() {
-        return eventId;
+        return eventid;
     }
 
     public void setId(Long id) {
-        this.eventId = id;
+        this.eventid = id;
     }
 
     public String getName() {
@@ -74,19 +78,19 @@ public class Event {
         this.creationDate = creationDate;
     }
 
-    public ArrayList<Double> getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(ArrayList<Double> location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
-    public ArrayList<String> getMaterialList() {
+    public String getMaterialList() {
         return materialList;
     }
 
-    public void setMaterialList(ArrayList<String> materialList) {
+    public void setMaterialList(String materialList) {
         this.materialList = materialList;
     }
 
@@ -106,70 +110,19 @@ public class Event {
         this.nbrOfCars = nbrOfCars;
     }
 
-    public ArrayList<User> getMemberList() {
+    public List<Participation> getMemberList() {
         return memberList;
     }
 
-    public void setMemberList(ArrayList<User> memberList) {
+    public void setMemberList(List<Participation> memberList) {
         this.memberList = memberList;
-    }
-
-    public User getUser(Long id){
-        try {
-            if (memberList.isEmpty()){
-                throw new UserNotFoundException();
-            } else {
-                User user = null;
-                for (User u: memberList){
-                    if (u.getId()==id){
-                        user = u;
-                    }
-                }
-                if (user != null){
-                    return user;
-                } else{
-                    throw new UserNotFoundException();
-                }
-            }
-        } catch (UserNotFoundException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
-
-    public void addMember(User u){
-        try {
-            if (memberList.size()<maxNumberParticipants){
-                if (memberList.contains(u)){
-                    throw new UserAlreadyRegisteredException();
-                } else {
-                    memberList.add(u);
-                }
-            } else {
-                throw new MaxParticipantReachedException();
-            }
-        } catch (UserAlreadyRegisteredException | MaxParticipantReachedException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void deleteMember(User u){
-        try {
-            if (memberList.contains(u)){
-                memberList.remove(u);
-            } else {
-                throw new UserNotFoundException();
-            }
-        } catch (UserNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     public User getCreator() {
         return creator;
     }
 
-    public void setCreator(User creator) {
+    public void setCreator(Admin creator) {
         this.creator = creator;
     }
 
@@ -185,11 +138,11 @@ public class Event {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return Objects.equals(eventId, event.eventId);
+        return Objects.equals(eventid, event.eventid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventId);
+        return Objects.hash(eventid);
     }
 }

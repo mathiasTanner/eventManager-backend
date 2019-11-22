@@ -1,39 +1,41 @@
 package com.mg.eventmanager.domain;
 
-import com.mg.eventmanager.Business.Role;
-
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name="evt_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
-    private Long id;
+    @Column(name = "userid", nullable = false, updatable = false)
+    private Long userid;
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
     private String mail;
     private boolean hasCar;
-    private Role role;
-    @Column(name = "password", nullable = false)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Participation> participations;
+    @Column(name = "passwordHash", nullable = false)
     private String passwordHash;
 
-    public User(String username, String mail, boolean hasCar, Role role, String passwordHash) {
+    public User(){}
+
+    public User(String username, String mail, boolean hasCar, String passwordHash) {
         this.username = username;
         this.mail = mail;
         this.hasCar = hasCar;
-        this.role = role;
         this.passwordHash = passwordHash;
     }
 
     public Long getId() {
-        return id;
+        return userid;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.userid = id;
     }
 
     public String getUsername() {
@@ -60,14 +62,6 @@ public class User {
         this.hasCar = hasCar;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
     public String getPasswordHash() {
         return passwordHash;
     }
@@ -81,12 +75,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id);
+        return Objects.equals(userid, user.userid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(userid);
     }
 
     @Override

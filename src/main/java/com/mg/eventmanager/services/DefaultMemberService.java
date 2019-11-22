@@ -48,4 +48,10 @@ public class DefaultMemberService implements MemberService {
         Optional<Member> member = memberRepository.findById(id);
         return member.orElse(null);
     }
+
+    @Override
+    public Member register(Member member){
+        Member memb = memberRepository.save(member);
+        return memb;
+    }
 }

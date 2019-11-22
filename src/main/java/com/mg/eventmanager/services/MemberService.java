@@ -10,4 +10,5 @@ public interface MemberService {
     String login(String username, String password);
     Optional<User> findByToken(String token);
     Member findById(Long id);
+    Member register(Member member);
 }

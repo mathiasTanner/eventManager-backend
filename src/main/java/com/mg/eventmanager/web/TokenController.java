@@ -19,4 +19,15 @@ public class TokenController {
         }
         return token;
     }
+
+
+    @PostMapping("/register")
+    public Member register(@RequestParam("username") final String username, @RequestParam("mail") final String mail, @RequestParam("hasCar") final boolean hasCar, @RequestParam("password") final String password){
+        Member member = new Member(username, mail, hasCar, password);
+        member = memberService.register(member);
+        String token = memberService.login(member.getUsername(), member.getPasswordHash());
+        member.setToken(token);
+        return member;
+    }
+
 }

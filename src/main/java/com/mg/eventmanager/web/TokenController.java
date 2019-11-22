@@ -12,7 +12,7 @@ public class TokenController {
     private MemberService memberService;
 
     @PostMapping("/token")
-    public String getToken(@RequestParam("username") final String username, @RequestParam("password") final String password){
+    public String getToken(@RequestParam("username") final String username, @RequestParam("passwordHash") final String password){
         String token= memberService.login(username,password);
         if(StringUtils.isEmpty(token)){
             return "no token found";
@@ -22,7 +22,7 @@ public class TokenController {
 
 
     @PostMapping("/register")
-    public Member register(@RequestParam("username") final String username, @RequestParam("mail") final String mail, @RequestParam("hasCar") final boolean hasCar, @RequestParam("password") final String password){
+    public Member register(@RequestParam("username") final String username, @RequestParam("mail") final String mail, @RequestParam("hasCar") final boolean hasCar, @RequestParam("passwordHash") final String password){
         Member member = new Member(username, mail, hasCar, password);
         member = memberService.register(member);
         String token = memberService.login(member.getUsername(), member.getPasswordHash());

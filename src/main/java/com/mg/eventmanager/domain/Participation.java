@@ -1,21 +1,19 @@
 package com.mg.eventmanager.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mg.eventmanager.domain.Event;
-import com.mg.eventmanager.domain.User;
 
 import javax.persistence.*;
 
 @Entity
 public class Participation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "partid", nullable = false, updatable = false)
     private Long partid;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "userid")
-    private User user;
+    @JoinColumn(name = "memberid")
+    private Member member;
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "eventid")
@@ -23,8 +21,8 @@ public class Participation {
 
     public Participation(){}
 
-    public Participation(User user, Event event) {
-        this.user = user;
+    public Participation(Member member, Event event) {
+        this.member = member;
         this.event = event;
     }
 
@@ -36,12 +34,12 @@ public class Participation {
         this.partid = partId;
     }
 
-    public User getUser() {
-        return user;
+    public Member getMember() {
+        return member;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setMember(Member member) {
+        this.member = member;
     }
 
     public Event getEvent() {

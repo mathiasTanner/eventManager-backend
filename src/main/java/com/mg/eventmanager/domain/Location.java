@@ -6,9 +6,10 @@ import java.util.List;
 @Entity
 public class Location {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "locid", nullable = false, updatable = false)
     private Long locid;
+    private String name;
     private Double latitude;
     private Double longitude;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "location")
@@ -16,10 +17,18 @@ public class Location {
 
     public Location(){}
 
-    public Location(Long locId, Double latitude, Double longitude) {
-        this.locid = locId;
+    public Location(String name, Double latitude, Double longitude) {
+        this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getLocId() {

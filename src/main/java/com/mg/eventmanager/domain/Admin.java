@@ -6,7 +6,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Admin extends User {
+public class Admin extends Member {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "creator")
     private List<Event> lstEvt;
 

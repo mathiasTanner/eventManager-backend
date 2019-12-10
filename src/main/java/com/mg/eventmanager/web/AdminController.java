@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@Controller
+@RestController
 public class AdminController {
     @Autowired
     AdminRepository adminRepo;

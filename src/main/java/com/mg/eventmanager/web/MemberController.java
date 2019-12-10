@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@Controller
+@RestController
 public class MemberController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class MemberController {
 
     @RequestMapping(value="/user/username/{username}", method = RequestMethod.GET)
     public @ResponseBody
-    Member findAdminByUsername(@PathVariable("username") String username) {
+    Member findByUsername(@PathVariable("username") String username) {
         return userRepo.findByUsername(username);
     }
 

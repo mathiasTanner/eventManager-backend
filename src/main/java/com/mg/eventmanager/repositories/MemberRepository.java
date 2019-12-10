@@ -15,8 +15,9 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000")
 @RepositoryRestResource(path="members")
 public interface MemberRepository extends CrudRepository<Member, Long> {
-    @RestResource(path = "username", rel = "customFindMethod")
+    @RestResource(path = "username")
     Member findByUsername( @Param("username")String username);
+    @RestResource(path = "mail")
     Member findByMail(String mail);
 
     @Query(value = "SELECT u FROM Member u where u.username = ?1 and u.passwordHash = ?2 ")

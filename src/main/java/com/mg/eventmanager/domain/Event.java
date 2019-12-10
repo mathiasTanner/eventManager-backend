@@ -19,7 +19,7 @@ public class Event {
     private LocalDate eventDate;
     private LocalDate creationDate;
     @ManyToOne
-    @JsonIgnore
+//    @JsonIgnore
     @JoinColumn(name = "locid")
     private Location location;
     private String materialList;
@@ -28,7 +28,7 @@ public class Event {
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "event")
     private List<Participation> memberList;
     @ManyToOne
-    @JsonIgnore
+//    @JsonIgnore
     @JoinColumn(name = "memberid")
     private Admin creator;
 

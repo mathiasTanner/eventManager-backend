@@ -11,11 +11,11 @@ public class Participation {
     @Column(name = "partid", nullable = false, updatable = false)
     private Long partid;
     @ManyToOne
-    @JsonIgnore
+//    @JsonIgnore
     @JoinColumn(name = "memberid")
     private Member member;
     @ManyToOne
-    @JsonIgnore
+//    @JsonIgnore
     @JoinColumn(name = "eventid")
     private Event event;
 

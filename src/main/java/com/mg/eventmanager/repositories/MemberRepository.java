@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@RepositoryRestResource(path="members")
+@Repository
 public interface MemberRepository extends CrudRepository<Member, Long> {
     Member findByUsername(String username);
     Member findByMail(String mail);
